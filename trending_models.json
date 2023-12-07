@@ -1,0 +1,52 @@
+[
+  {
+    "name": "stabilityai/stable-video-diffusion-img2vid-xt",
+    "link": "https://huggingface.co/stabilityai/stable-video-diffusion-img2vid-xt",
+    "repo_id": "stable-video-diffusion-img2vid-xt"
+  },
+  {
+    "name": "openai/whisper-large-v3",
+    "link": "https://huggingface.co/openai/whisper-large-v3",
+    "repo_id": "whisper-large-v3"
+  },
+  {
+    "name": "microsoft/Orca-2-13b",
+    "link": "https://huggingface.co/microsoft/Orca-2-13b",
+    "repo_id": "Orca-2-13b"
+  },
+  {
+    "name": "coqui/XTTS-v2",
+    "link": "https://huggingface.co/coqui/XTTS-v2",
+    "repo_id": "XTTS-v2"
+  },
+  {
+    "name": "stabilityai/stable-video-diffusion-img2vid",
+    "link": "https://huggingface.co/stabilityai/stable-video-diffusion-img2vid",
+    "repo_id": "stable-video-diffusion-img2vid"
+  },
+  {
+    "name": "latent-consistency/lcm-lora-sdxl",
+    "link": "https://huggingface.co/latent-consistency/lcm-lora-sdxl",
+    "repo_id": "lcm-lora-sdxl"
+  },
+  {
+    "name": "openchat/openchat_3.5",
+    "link": "https://huggingface.co/openchat/openchat_3.5",
+    "repo_id": "openchat_3.5"
+  },
+  {
+    "name": "01-ai/Yi-34B",
+    "link": "https://huggingface.co/01-ai/Yi-34B",
+    "repo_id": "Yi-34B"
+  },
+  {
+    "name": "google/switch-c-2048",
+    "link": "https://huggingface.co/google/switch-c-2048",
+    "repo_id": "switch-c-2048"
+  },
+  {
+    "name": "mistralai/Mistral-7B-v0.1",
+    "link": "https://huggingface.co/mistralai/Mistral-7B-v0.1",
+    "repo_id": "Mistral-7B-v0.1"
+  }
+]

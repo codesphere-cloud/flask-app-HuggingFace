@@ -1,0 +1,8 @@
+prepare:
+  steps:
+    - command: pipenv install
+test:
+  steps: []
+run:
+  steps:
+    - command: pipenv run gunicorn -b 0.0.0.0:3000 app:app
