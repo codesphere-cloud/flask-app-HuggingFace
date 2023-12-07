@@ -14,27 +14,27 @@ nltk.download('words')
 app = Flask(__name__)
 
 def clean_text(text):
-    # Entferne escaped characters
+    # Remove escaped characters
     text = re.sub(r'\\.', ' ', text)
 
-    # Entferne Links
+    # Remove links
     text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE)
 
-    # Entferne alles zwischen ``` und ```
+    # Remove everything between ``` and ```
     text = re.sub(r'```.*?```', '', text, flags=re.DOTALL)
 
-    # Entferne Wörter aus zwei Buchstaben, die keine Stopwords in Englisch sind
+    # Remove two-letter words that are not English stopwords
     stop_words = set(stopwords.words('english'))
     words = text.split()
     words = [word for word in words if len(word) > 2 or word.lower() in stop_words]
 
-    # Setze die bereinigten Wörter wieder zu einem Text zusammen
+    # Join the cleaned words back into text
     clean_text = ' '.join(words)
 	
-	# Entferne übrige Sonderzeichen
+	# Remove remaining special characters
     clean_text = re.sub(r'[^A-Za-z0-9\s]', '', clean_text)
 	
-	# Entferne führende und abschließende Leerzeichen
+	# Remove leading and trailing whitespaces
     clean_text = clean_text.strip()
 
     return clean_text
@@ -50,7 +50,7 @@ def get_trending_models():
 
         trending_models = []
 
-        # Extrahiere die Namen und Links der ersten 10 Modelle
+        # Extract the names and links of the first 10 models
         model_cards = soup.find_all('article', class_='overview-card-wrapper')
         for card in model_cards[:10]:
             model_info = {}
@@ -61,7 +61,7 @@ def get_trending_models():
 
         return jsonify(trending_models)
     else:
-        return jsonify({'error': f"Fehler beim Abrufen der Seite. Statuscode: {response.status_code}"})
+        return jsonify({'error': f"Error retrieving the page. Status code: {response.status_code}"})
 
 
 @app.route('/get_model_card', methods=['GET'])
@@ -69,29 +69,26 @@ def get_model_card():
     model_name = request.args.get('model_name')
 
     if not model_name:
-        return jsonify({'error': 'Modellname fehlt in der Anfrage'})
+        return jsonify({'error': 'Model name is missing in the request'})
 
     try:
         card = ModelCard.load(model_name)
         model_card_content = card.content
 
-        # Extrahiere die ersten 100 Wörter
+        # Extract the first 100 words
         words = model_card_content.split()
         model_card_content_first_100_words = ' '.join(words[:600])
 
-        # Entfernen Sie die Zeichen, die für JSON-Zeichen entkommen müssen
+        # Remove the characters that need to be escaped for JSON
         model_card_content_without_escaped_chars = clean_text(model_card_content_first_100_words)
         
-		
-		
         response_data = {
             'text': model_card_content_without_escaped_chars
         }
 
         return jsonify(response_data)
     except Exception as e:
-        return jsonify({'error': f"Fehler beim Laden der Model Card: {str(e)}"})
+        return jsonify({'error': f"Error loading the Model Card: {str(e)}"})
 
-	
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
